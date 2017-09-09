@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -25,8 +26,14 @@
         <button id="getMessage" class="animated bounceInUp">
             Click for new Quote
           </button>
+          <button class="animated bounceInUp">
+            <a class="twitter-share-button" id="twitterButton" data-size="small">Tweet</a>
+          </button>
+
       </div>
+
     </div>
+
   </div>
 </body>
 
@@ -38,9 +45,8 @@
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
     //jquery triggered on button click
     $("#getMessage").on("click", function() {
-      //grabs json from api
+      //grabs json from api this is the api
       $.getJSON("https://talaikis.com/api/quotes/random/", function(data) {
-
         //declare html variable to put json on to in html formatted way
         var html = "";
         //use key and value from json object format to html add to html variable
@@ -57,8 +63,15 @@
           function() {
             $(this).removeClass(neatoAnimation)
           });
-
       });
     });
+
+
+    $("#twitterButton").on("click", function() {
+      var textToTweet = $(".quote").text();
+
+      var tweetLink = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(textToTweet);
+      window.open(tweetLink, "_blank");
+    })
   });
 </script>
