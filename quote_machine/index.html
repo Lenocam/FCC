@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <meta charset="utf-8">
+  <title>Quote Machine</title>
+</head>
+
+<body>
+  <div class="center-div">
+    <div class="row text-center">
+      <h1 class="animated bounceInUp">Quote Machine</h1>
+    </div>
+    <div class="row text-center">
+      <!--The message will go here -->
+      <div class="col-xs-12 well message">
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-xs-12">
+        <!-- The button when clicks trigers the getMessage function -->
+        <button id="getMessage" class="animated bounceInUp">
+            Click for new Quote
+          </button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  $(document).ready(function() {
+    var neatoAnimation = "animated jello";
+    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+    //jquery triggered on button click
+    $("#getMessage").on("click", function() {
+      //grabs json from api
+      $.getJSON("https://talaikis.com/api/quotes/random/", function(data) {
+
+        //declare html variable to put json on to in html formatted way
+        var html = "";
+        //use key and value from json object format to html add to html variable
+        $.each(data, function(key, val) {
+          html += "<div class='quote'>";
+          html += val + "<br>";
+          html += "<div><br>";
+        })
+
+        //tell html var where and how to opened using html jsquery method
+
+        $(".message").html(html);
+        $(".message").addClass(neatoAnimation).one(animationEnd,
+          function() {
+            $(this).removeClass(neatoAnimation)
+          });
+
+      });
+    });
+  });
+</script>

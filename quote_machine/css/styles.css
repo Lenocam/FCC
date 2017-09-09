@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Ostrich";
+  src:url("fonts/Oslo_II.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Ostrich-Bold";
+  src: url("fonts/Oslo_II_Bold.tff") format('truetype');
+}
+
+@font-face {
+  font-family: "Adler";
+  src: url("fonts/Adler.ttf") format('truetype');
+}
+
+body {
+
+  background-color: white;
+  display: flex;
+  justify-content: center;
+
+}
+
+h1 {
+  font-family: "Ostrich", "Bitstream Vera Serif", serif;
+  font-size: 80px;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-delay: 1s;
+  -webkit-animation-iteration-count: 1;
+}
+
+.quote {
+  font-family: "Adler";
+  font-size: 20px;
+
+}
+button {
+  font-family: "Adler";
+  font-size: 26px;
+}
+
+.center-div
+{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 700px;
+  height: 400px;
+  background-color: transparent;
+  border-radius: 3px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+
+}
