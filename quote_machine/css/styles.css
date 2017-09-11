@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "Ostrich";
+  font-family: "Oslo";
   src: url("fonts/Oslo_II.ttf") format('truetype');
 }
 
 @font-face {
-  font-family: "Ostrich-Bold";
+  font-family: "Oslo-Bold";
   src: url("fonts/Oslo_II_Bold.tff") format('truetype');
 }
 
@@ -22,14 +22,14 @@ body {
 }
 
 h1 {
-  font-family: "Ostrich", "Bitstream Vera Serif", serif;
+  font-family: "Oslo", "Bitstream Vera Serif", serif;
   font-size: 80px;
   -webkit-animation-duration: 0.5s;
   -webkit-animation-delay: 1s;
   -webkit-animation-iteration-count: 1;
 }
 
-.quote {
+.quoteBox {
   font-family: "Adler";
   font-size: 20px;
 }
