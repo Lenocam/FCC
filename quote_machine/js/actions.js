@@ -38,5 +38,5 @@ $(document).ready(function() {
 
     var tweetLink = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(textToTweet);
     window.open(tweetLink, "tweet", "height=300,width=550,resizable=0");
-  })
+  });
 });
