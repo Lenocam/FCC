@@ -1,13 +1,18 @@
 $(document).ready(function() {
+  getLocation();
   var html = "";
+  var metricFormat = "&units=metric";
+  var imperialFormat = "&units=imperial"
+
   //openweathermap api key
   var localWeatherKey = "09a82f5d502a21a066b9f607f9aafd04";
-  //openweathermap api url
 
+  //openweathermap api url
   var apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
   //press button and retrieve longitude & latitude
-  //$("#getLocation").on("click", function() {
-  getLocation();
+  $("#getLocation").on("click", function() {
+    getLocation();
+  });
 
   function getLocation() {
     var currentLon;
@@ -27,7 +32,7 @@ $(document).ready(function() {
   };
   //adds the currentLon and currentLat to the apiUrl
   function buildApi(currentLon, currentLat) {
-    apiUrl += "lat=" + currentLat + "&lon=" + currentLon + "&APPID=" + localWeatherKey;
+    apiUrl += "lat=" + currentLat + "&lon=" + currentLon + imperialFormat + "&APPID=" +  localWeatherKey;
     loadJSON(apiUrl);
   }
   //gets data from JSON
@@ -51,16 +56,17 @@ $(document).ready(function() {
   function actGlobally() {
     console.log(currentWeather);
     console.log(currentWeather.clouds);
-    html += "<br><p>clouds: " + currentWeather.clouds.all + "</p>";
+    console.log(currentWeather.main.temp);
+    html += "<br><p>Temp: " + currentWeather.main.temp + "</p>";
     $(".demo").html(html);
   }
 
 
 
-
+/*
   $("#actGlobally").on("click", function() {
 
   })
 
-
+*/
 });
