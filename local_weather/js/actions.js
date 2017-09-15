@@ -1,6 +1,15 @@
 $(document).ready(function() {
   getLocation();
+  //variables to print to screen
   var html = "";
+  var city = "";
+  var timeToScreen = "";
+
+  //variables used in javascript
+  var date = new Date();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+
   var metricFormat = "&units=metric";
   var imperialFormat = "&units=imperial"
 
@@ -8,7 +17,8 @@ $(document).ready(function() {
   var localWeatherKey = "09a82f5d502a21a066b9f607f9aafd04";
 
   //openweathermap api url
-  var apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
+  var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?";
+  //var apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
   //press button and retrieve longitude & latitude
   $("#getLocation").on("click", function() {
     getLocation();
@@ -38,7 +48,6 @@ $(document).ready(function() {
   //gets data from JSON
   function loadJSON(apiUrl) {
     $.getJSON(apiUrl, function(data) {
-      //console.log(data);
       currentWeather = data;
       $.when(currentWeather).done(function() {
         actGlobally();
@@ -55,10 +64,14 @@ $(document).ready(function() {
   }
   function actGlobally() {
     console.log(currentWeather);
-    console.log(currentWeather.clouds);
-    console.log(currentWeather.main.temp);
-    html += "<br><p>Temp: " + currentWeather.main.temp + "</p>";
-    $(".demo").html(html);
+    //console.log(currentWeather.clouds);
+    console.log(currentWeather.list[0].main.temp);
+    console.log(currentWeather.city.name);
+    timeToScreen += hours + ":" + minutes;
+    city += currentWeather.city.name;
+    //html += "<br><p>Temp: " + currentWeather.list.main.temp + "</p>";
+    //$(".demo").html(html);
+    $("#city").html(city);
   }
 
 
