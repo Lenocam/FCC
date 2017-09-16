@@ -108,10 +108,15 @@ body {
   }
 }
 /* C to f toggle button */
+.switch {
+  display: inline-block;
+}
+
 .cmn-toggle {
   position: absolute;
   margin-left: -624.9375em;
   visibility: hidden;
+
 }
 
 .cmn-toggle + label {
@@ -124,8 +129,8 @@ body {
 
 input.cmn-toggle-yes-no + label {
   padding: 0.132em;
-  width: 7.594em;
-  height: 3.75em;
+  width: 3.594em;
+  height: 1.75em;
 }
 
 input.cmn-toggle-yes-no + label:after,

@@ -15,7 +15,7 @@ $(document).ready(function() {
   }
   var minutes = date.getMinutes();
   if (minutes < 10) {
-    min = "0" + min;
+    minutes = "0" + minutes;
   }
 
   var metricFormat = "&units=metric";
@@ -78,7 +78,6 @@ $(document).ready(function() {
     currentTemp = currentWeather.list[0].main.temp;
     timeToScreen += hours + ":" + minutes + " " + dayOrNight;
     city += currentWeather.city.name;
-    //html += "<br><p>Temp: " + currentWeather.list.main.temp + "</p>";
     //$(".demo").html(html);
     $("#city").html(city);
     $("#time").html(timeToScreen);
