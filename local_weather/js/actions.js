@@ -8,7 +8,15 @@ $(document).ready(function() {
   //variables used in javascript
   var date = new Date();
   var hours = date.getHours();
+  var dayOrNight = "AM";
+  if (hours > 12) {
+    hours -= 12;
+    dayOrNight = "PM";
+  }
   var minutes = date.getMinutes();
+  if (minutes < 10) {
+    min = "0" + min;
+  }
 
   var metricFormat = "&units=metric";
   var imperialFormat = "&units=imperial"
@@ -67,11 +75,14 @@ $(document).ready(function() {
     //console.log(currentWeather.clouds);
     console.log(currentWeather.list[0].main.temp);
     console.log(currentWeather.city.name);
-    timeToScreen += hours + ":" + minutes;
+    currentTemp = currentWeather.list[0].main.temp;
+    timeToScreen += hours + ":" + minutes + " " + dayOrNight;
     city += currentWeather.city.name;
     //html += "<br><p>Temp: " + currentWeather.list.main.temp + "</p>";
     //$(".demo").html(html);
     $("#city").html(city);
+    $("#time").html(timeToScreen);
+    $("#temp h1").html(currentTemp);
   }
 
 
