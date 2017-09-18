@@ -4,10 +4,27 @@ header {
   position: fixed;
   top: 0;
   left: 0; }
-  header h1 {
-    padding-left: 0.5em;
-    margin-bottom: 0.25em;
-    display: inline-block; }
+  header .cityandswitch {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    header .cityandswitch h1 {
+      padding-left: 0.5em;
+      margin-bottom: 0.25em; }
+    header .cityandswitch .switch {
+      margin-right: 1em;
+      padding-top: 1.25em;
+      margin-bottom: 0.25em; }
   header h4 {
     display: inline-block;
     padding: 0.25em;
@@ -66,9 +83,6 @@ header {
       botom: 0; }
 
 /* C to f toggle button */
-.switch {
-  display: inline-block; }
-
 .cmn-toggle {
   position: absolute;
   margin-left: -624.9375em;
@@ -84,26 +98,26 @@ header {
   -ms-user-select: none;
   user-select: none; }
 
-input.cmn-toggle-yes-no + label {
+input.cmn-toggle-c-f + label {
   padding: 0.132em;
   width: 3.594em;
   height: 1.75em; }
 
-input.cmn-toggle-yes-no + label:after,
-input.cmn-toggle-yes-no + label:before {
+input.cmn-toggle-c-f + label:after,
+input.cmn-toggle-c-f + label:before {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  color: #fff;
+  color: black;
   font-family: "Roboto Slab", serif;
-  font-size: 1.25em;
+  font-size: 1em;
   text-align: center;
-  line-height: 3.75em; }
+  line-height: 1.75em; }
 
-input.cmn-toggle-yes-no + label:before {
+input.cmn-toggle-c-f + label:before {
   background-color: #dddddd;
   content: attr(data-off);
   -webkit-transition: -webkit-transform 0.5s;
@@ -114,7 +128,7 @@ input.cmn-toggle-yes-no + label:before {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden; }
 
-input.cmn-toggle-yes-no + label:after {
+input.cmn-toggle-c-f + label:after {
   background-color: #8ce196;
   content: attr(data-on);
   -webkit-transition: -webkit-transform 0.5s;
@@ -127,10 +141,10 @@ input.cmn-toggle-yes-no + label:after {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden; }
 
-input.cmn-toggle-yes-no:checked + label:before {
+input.cmn-toggle-c-f:checked + label:before {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg); }
 
-input.cmn-toggle-yes-no:checked + label:after {
+input.cmn-toggle-c-f:checked + label:after {
   -webkit-transform: rotateY(0);
   transform: rotateY(0); }

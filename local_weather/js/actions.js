@@ -20,9 +20,10 @@ $(document).ready(function() {
 
   var metricFormat = "&units=metric";
   var imperialFormat = "&units=imperial"
+  var currentFormat = imperialFormat;
 
   //openweathermap api key
-  var localWeatherKey = "09a82f5d502a21a066b9f607f9aafd04";
+  var localWeatherKey = "&APPID=09a82f5d502a21a066b9f607f9aafd04";
 
   //openweathermap api url
   var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?";
@@ -33,16 +34,16 @@ $(document).ready(function() {
   });
 
   function getLocation() {
-    var currentLon;
-    var currentLat;
+    var currentLon = "&lon=";
+    var currentLat = "lat=";
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(loc) {
         //set currentLon & currentLat
-        currentLon = loc.coords.longitude;
-        currentLat = loc.coords.latitude;
+        currentLon += loc.coords.longitude;
+        currentLat += loc.coords.latitude;
         //fucntions called built on longitude and latitude location
         buildApi(currentLon, currentLat);
-        drawCoords(currentLon, currentLat);
+        //drawCoords(currentLon, currentLat);
       });
     } else {
       alert("You're lost and we can't find you.");
@@ -50,8 +51,10 @@ $(document).ready(function() {
   };
   //adds the currentLon and currentLat to the apiUrl
   function buildApi(currentLon, currentLat) {
-    apiUrl += "lat=" + currentLat + "&lon=" + currentLon + imperialFormat + "&APPID=" +  localWeatherKey;
-    loadJSON(apiUrl);
+    console.log(currentFormat);
+    console.log(apiUrl);
+    apiUrl += currentLat +  currentLon + currentFormat +  localWeatherKey;
+    loadJSON(apiUrl)
   }
   //gets data from JSON
   function loadJSON(apiUrl) {
@@ -62,6 +65,17 @@ $(document).ready(function() {
       });
     });
   }
+  $("#cmn-toggle").on("click", function() {
+    if ($("#cmn-toggle").is(':checked')) {
+      console.log('c');
+      dataReset();
+      getLocation(currentFormat = metricFormat);
+    } else {
+      console.log("f");
+      dataReset();
+      getLocation(currentFormat = imperialFormat);
+    }
+  })
 
   function drawCoords(currentLat, currentLon) {
     //print long and lat to screen
@@ -71,6 +85,7 @@ $(document).ready(function() {
 
   }
   function actGlobally() {
+    console.log(apiUrl);
     console.log(currentWeather);
     //console.log(currentWeather.clouds);
     console.log(currentWeather.list[0].main.temp);
@@ -86,10 +101,18 @@ $(document).ready(function() {
 
 
 
-/*
-  $("#actGlobally").on("click", function() {
+  /*
+    $("#actGlobally").on("click", function() {
 
-  })
+    })
 
-*/
+  */
+  function dataReset() {
+    apiUrl = "https://api.openweathermap.org/data/2.5/forecast?";
+    timeToScreen = "";
+    city = "";
+  }
+
+
+
 });
