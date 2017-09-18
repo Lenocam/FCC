@@ -33,13 +33,12 @@ header {
   top: 0;
   left: 0;
   //background-color: orange;
-
-
   .cityandswitch {
     //background: red;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     h1 {
       //background-color: blue;
       //color: green;
@@ -56,8 +55,6 @@ header {
     }
   }
 
-
-
   h4 {
     display: inline-block;
     padding: 0.25em;
@@ -72,6 +69,7 @@ header {
   width: 100%;
   margin-top: 11em;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   /* center horizontally */
   align-items: center;
@@ -96,7 +94,7 @@ body {
   background-color: orange;
   text-align: center;
 
-  .fiveDay {
+  .weatherInfo {
     background: pink;
     display: inline-block;
     padding: 0.25em;
@@ -105,32 +103,30 @@ body {
     width: 3.75em;
     text-align: center;
     margin-top: 0.65em;
+    vertical-align: top;
 
     .day {
       background: red;
-      top: 0;
+      //top: 0;
     }
 
-    .icon {
+    .number {
       padding: 1em 1em 1.45em;
     }
 
-    .highLow {
-      background: green;
-      position: relative;
-      margin: 0 auto;
-      botom: 0;
-    }
+    // .highLow {
+    //   background: green;
+    //   position: relative;
+    //   margin: 0 auto;
+    //   botom: 0;
+    // }
   }
 }
-
-
 /* C to f toggle button */
 .cmn-toggle {
   position: absolute;
   margin-left: -624.9375em;
   visibility: hidden;
-
 }
 
 .cmn-toggle + label {
@@ -163,14 +159,14 @@ input.cmn-toggle-c-f + label:before {
 }
 
 input.cmn-toggle-c-f + label:before {
-  background-color: #dddddd;
+  background-color: #d35400;
   content: attr(data-off);
   transition: transform 0.5s;
   backface-visibility: hidden;
 }
 
 input.cmn-toggle-c-f + label:after {
-  background-color: #8ce196;
+  background-color: #c0392b;
   content: attr(data-on);
   transition: transform 0.5s;
   transform: rotateY(180deg);

@@ -4,6 +4,14 @@ $(document).ready(function() {
   var html = "";
   var city = "";
   var timeToScreen = "";
+  var currentCondition = "";
+  var weatherIcon = "";
+  var humidity = "";
+  var windSpeed = "";
+  var speedFormat = " mph";
+
+  var originalIconUrl ="http://openweathermap.org/img/w/";
+  var iconUrl = originalIconUrl;
 
   //variables used in javascript
   var date = new Date();
@@ -26,8 +34,9 @@ $(document).ready(function() {
   var localWeatherKey = "&APPID=09a82f5d502a21a066b9f607f9aafd04";
 
   //openweathermap api url
-  var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?";
-  //var apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
+  //var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?";
+  var originalApiUrl = "https://api.openweathermap.org/data/2.5/weather?";
+  var apiUrl = originalApiUrl;
   //press button and retrieve longitude & latitude
   $("#getLocation").on("click", function() {
     getLocation();
@@ -65,14 +74,18 @@ $(document).ready(function() {
       });
     });
   }
+  //Flips currentFormat to change scale used to measure
   $("#cmn-toggle").on("click", function() {
     if ($("#cmn-toggle").is(':checked')) {
       console.log('c');
+
       dataReset();
+      speedFormat = " mps";
       getLocation(currentFormat = metricFormat);
     } else {
       console.log("f");
       dataReset();
+      speedFormat = " mph";
       getLocation(currentFormat = imperialFormat);
     }
   })
@@ -84,33 +97,44 @@ $(document).ready(function() {
     $(".demo").html(html);
 
   }
+  //collected data pushed to visible
   function actGlobally() {
-    console.log(apiUrl);
-    console.log(currentWeather);
-    //console.log(currentWeather.clouds);
-    console.log(currentWeather.list[0].main.temp);
-    console.log(currentWeather.city.name);
-    currentTemp = currentWeather.list[0].main.temp;
+
+    currentTemp = currentWeather.main.temp;
     timeToScreen += hours + ":" + minutes + " " + dayOrNight;
-    city += currentWeather.city.name;
-    //$(".demo").html(html);
+    city += currentWeather.name;
+    currentCondition += currentWeather.weather[0].main;
+    humidity += currentWeather.main.humidity + "%";
+    windSpeed += currentWeather.wind.speed +speedFormat;
+    $(".demo").html(html);
     $("#city").html(city);
     $("#time").html(timeToScreen);
     $("#temp h1").html(currentTemp);
+    $("#condition").html(currentCondition)
+    $(".humidity").html(humidity);
+    $(".windSpeed").html(windSpeed);
+    //console.log(currentWeather);
+    //console.log(currentWeather.weather[0].main);
+    console.log(currentWeather.clouds.all);
+    // console.log(currentWeather.sys.sunrise);
+    // console.log(currentWeather.sys.sunset);
+    // console.log(currentWeather.wind.deg);
+    weatherIcon = currentWeather.weather[0].icon;
+    iconUrl += weatherIcon + ".png";
+    $("#fire img").attr("src", iconUrl);
   }
 
 
-
-  /*
-    $("#actGlobally").on("click", function() {
-
-    })
-
-  */
+  //resets data url and visible data when changed between F and C
   function dataReset() {
-    apiUrl = "https://api.openweathermap.org/data/2.5/forecast?";
+    apiUrl = originalApiUrl;
     timeToScreen = "";
     city = "";
+    currentCondition = "";
+    iconUrl = originalIconUrl;
+    humidity = "";
+    windSpeed = "";
+    speedFormat = "";
   }
 
 
