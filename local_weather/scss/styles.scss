@@ -1,31 +1,3 @@
-@mixin for-size($size) {
-   @if $size == phone-only{
-    @media (max-width: 599px) {
-       @content;
-    }
-  }
-  @else if $size == tablet-portrait-up {
-     @media (min-width: 600px){
-      @content;
-    }
-  }
-  @else if $size == tablet-landscape-up {
-     @media (min-width: 900px){
-      @content;
-    }
-  }
-  @else if $size == desktop-up {
-     @media (min-width: 1200px){
-      @content;
-    }
-  }
-  @else if $size == big-desktop-up {
-     @media (min-width: 1800px){
-      @content;
-    }
-  }
-}
-
 body {
   background-color: #3498db;
 
@@ -35,9 +7,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    //background-color: orange;
     .cityandswitch {
-      //background: red;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -48,7 +18,6 @@ body {
       }
 
       .switch {
-        //display: inline-block;
         margin-right: 1em;
         padding-top: 1.25em;
         margin-bottom: 0.25em;
@@ -58,7 +27,6 @@ body {
     h4 {
       display: inline-block;
       padding: 0.25em;
-      //background: red;
       margin: 0;
       padding-left: 0.5em;
     }
@@ -81,17 +49,14 @@ body {
   }
 
   #bottom {
-    //background: green;
     width: 100%;
     height: 8em;
     position: fixed;
     bottom: 0;
     left: 0;
-    //background-color: orange;
     text-align: center;
 
     .weatherInfo {
-      //background: pink;
       display: inline-block;
       padding: 0.25em;
       margin: 0;
@@ -100,11 +65,6 @@ body {
       text-align: center;
       margin-top: 0.65em;
       vertical-align: top;
-
-      .day {
-        //background: red;
-        //top: 0;
-      }
 
       .number {
         padding: 1em 1em 1.45em;

@@ -29,6 +29,8 @@ $(document).ready(function() {
     minutes = "0" + minutes;
   }
 
+  var timeString = "";
+
   var offset = (date.getTimezoneOffset()) / 60;
   console.log(offset);
   //variables to set unit measurement in api call
@@ -63,17 +65,14 @@ $(document).ready(function() {
   };
   //adds the currentLon and currentLat to the apiUrl
   function buildApi(currentLon, currentLat) {
-    console.log(currentFormat);
-
     apiUrl += currentLat + "&lon=" + currentLon + currentFormat + localWeatherKey;
-    sunApiUrl += currentLat + "&lng=" + currentLon + "&date=today&";
-    //sunApiUrl = "https://api.sunrise-sunset.org/json?lat=40.17&lng=-76.99&date=today";
+    sunApiUrl += currentLat + "&lng=" + currentLon + "&date=today&formatted=0";
     loadJSON(apiUrl);
-    window.open(sunApiUrl);
     makeTheSun(sunApiUrl);
 
   }
   //gets data from JSON
+
   function loadJSON(apiUrl) {
     $.getJSON(apiUrl, function(data) {
       currentWeather = data;
@@ -82,11 +81,9 @@ $(document).ready(function() {
       });
     });
   }
+  //This one is redundant and a place I need to improve
   function makeTheSun(sunApiUrl) {
-    console.log(sunApiUrl);
-    console.log("inside");
     $.getJSON(sunApiUrl, function(data) {
-      console.log("data");
       currentSun = data;
       $.when(currentSun).done(function() {
         actSunny();
@@ -110,7 +107,7 @@ $(document).ready(function() {
   function drawCoords(currentLat, currentLon) {
     html += "Latitude: " + currentLat;
     html += "<br>Longitude: " + currentLon;
-    $(".demo").html(html);
+    $(".longLat").html(html);
   }
 
   //collected data pushed to visible
@@ -126,10 +123,8 @@ $(document).ready(function() {
     clouds += currentWeather.clouds.all + "%";
     weatherIcon = currentWeather.weather[0].icon;
     iconUrl += weatherIcon + ".png";
-    console.log(currentWeather);
 
     //data distributed to html
-    //$(".demo").html(html);
     $("#city").html(city);
     $("#time").html(timeToScreen);
     $("#temp h1").html(currentTemp);
@@ -137,7 +132,6 @@ $(document).ready(function() {
     $(".humidity").html(humidity);
     $(".windSpeed").html(windSpeed);
     $(".clouds").html(clouds);
-
     $("#wicon img").attr("src", iconUrl);
 
     //Strips seconds from time
@@ -152,11 +146,11 @@ $(document).ready(function() {
       $("body").css("background-color", color);
     }
 
-    //sets background-color based on weatherIcon
+    //sets background-color based on weatherIcon id
     switch (weatherIcon) {
       case "01d":
         //clear sunny
-        setBackgroundColor("#328cc1");
+        setBackgroundColor("#57b0e5");
         break;
       case "01n":
         //clear night
@@ -198,7 +192,6 @@ $(document).ready(function() {
         // rain day
         setBackgroundColor("#9a9eab");
         break;
-
       case "10n":
         //rain night
         setBackgroundColor("#5d535e");
@@ -231,19 +224,51 @@ $(document).ready(function() {
         setBackgroundColor("# #3498db");
     }
   }
+  //uses sunrise-sunset api to process data and print to screen
   function actSunny() {
-    console.log("fuck");
-    // var utcSunrise = currentSun.sys.sunrise;
-    // console.log(utcSunrise);
-    // var sunrise = prettyDate2(utcSunrise);
-    // $(".sunrise").html(sunrise);
-    // var utcSunset = currentSun.sys.sunset;
-    // console.log(utcSunset);
-    // var sunset = prettyDate2(utcSunset);
-    // $(".sunset").html(sunset);
+    //puts data into variables
+    var utcSunset = currentSun.results.sunset;
+    var utcSunrise = currentSun.results.sunrise;
+
+    //converts to utc pulls out hours and minutes applies offset
+    function buildTime(time) {
+      //reset timeString between runs
+      timeString = "";
+      time = new Date(time);
+      hours = time.getUTCHours();
+
+      //revieve offset determine if I need to add or subtract hours
+      //set offset to absolute value
+      if (offset > 0) {
+        hours -= Math.abs(offset);
+      } else if (offset < 0) {
+        hours += Math.abs(offset);
+      }
+      //remove military time format
+      if (hours > 12) {
+        hours -= 12;
+      }
+      //makes minutes 2 digits
+      minutes = time.getUTCMinutes();
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      //creates return object
+      timeString += hours + ":" + minutes
+      return timeString;
+
+    }
+    //calls buildTime on each sunset-sunrise
+    var sunrise = buildTime(utcSunrise);
+    var sunset = buildTime(utcSunset);
+    //sends to screen
+    $(".sunrise").html(sunrise);
+    $(".sunset").html(sunset);
   }
 
   //resets data url and visible data when changed between F and C
+  //probably could do this better by saving in chache or something else I havent
+  //learned yet
   function dataReset() {
     apiUrl = originalApiUrl;
     timeToScreen = "";
