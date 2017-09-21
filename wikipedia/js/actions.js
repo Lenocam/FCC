@@ -7,7 +7,6 @@ $(document).ready(function() {
 
   $("#searchButton").on("click", function() {
     if ($("#searchTerm").val() == "") {
-      console.log('fart');
     } else {
       $("#output").empty();
       var formValue = $("#searchTerm").val();
@@ -34,7 +33,6 @@ $(document).ready(function() {
   });
 
   $("#randomArticle").on("click", function() {
-    //console.log("random");
     window.open("https://en.wikipedia.org/wiki/Special:Random");
   })
 });
