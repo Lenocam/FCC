@@ -8,7 +8,9 @@ $(document).ready(function() {
     "habathcx",
     "riotgames",
     "noobs2ninjas",
-    "esl_csgo"
+    "esl_csgo",
+    "sodapoppin",
+    "lirik"
   ];
   var baseUrl = "https://wind-bow.gomix.me/twitch-api/";
   var users = "users/";
@@ -17,11 +19,11 @@ $(document).ready(function() {
   var streamUrl = baseUrl + streams;
   var userUrl = baseUrl + users;
   var userLinkSetUp = "https://go.twitch.tv/";
-
   for (var i = 0; i < twitchArray.length; i++) {
     user = twitchArray[i];
     streamingUser(user);
   }
+
   function streamingUser(name) {
     $.ajax({
       url: streamUrl + name,
@@ -31,8 +33,8 @@ $(document).ready(function() {
         if (data.stream === null) {
           ifItsNull(name);
         } else {
-          $("#output").prepend("<div class=well><a href=" + userLinkSetUp+name + "><h2>" + data.stream.channel.display_name + "</h2></a>" + "<p>" + data.stream.game + "</p></div>");
-          console.log(data);
+          $("#output").prepend("<div class='well'><img src="+ data.stream.channel.logo +"><a href=" + data.stream.channel.url + "><h2>" + data.stream.channel.display_name + "</h2></a>" + "<p>" + data.stream.game + "</p></div>");
+          // console.log(data);
         }
 
       }
@@ -46,15 +48,14 @@ $(document).ready(function() {
       dataType: "jsonp",
       type: "GET",
       success: function(data) {
+        $("#output").append("<div class='well'><img src="+ data.logo +"><a href="+ userLinkSetUp + name + "><h2>" + data.display_name + "</h2></a><p>offline...</p></div>");
         console.log(data);
-        $("#output").append("<div><h2>" + data.display_name + "</h2><p>" + data.bio + "</p></div>");
-        //console.log(user);
-
       }
 
     });
 
   }
+
 
 });
 
