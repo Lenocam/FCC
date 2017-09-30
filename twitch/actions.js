@@ -10,7 +10,12 @@ $(document).ready(function() {
     "noobs2ninjas",
     "esl_csgo",
     "sodapoppin",
-    "lirik"
+    "lirik",
+    "nl_kripp",
+    "tsm_theoddone",
+    "dotati",
+    "e3",
+    "Faceit"
   ];
   var baseUrl = "https://wind-bow.gomix.me/twitch-api/";
   var users = "users/";
@@ -33,7 +38,7 @@ $(document).ready(function() {
         if (data.stream === null) {
           ifItsNull(name);
         } else {
-          $("#output").prepend("<div class='well'><img src="+ data.stream.channel.logo +"><a href=" + data.stream.channel.url + "><h2>" + data.stream.channel.display_name + "</h2></a>" + "<p>" + data.stream.game + "</p></div>");
+          $("#output").prepend("<div class='well'><img src="+ data.stream.channel.logo +"><a href=" + data.stream.channel.url + "><h3>" + data.stream.channel.display_name + "</h3></a>" + "<p>" + data.stream.game + "</p></div>");
           // console.log(data);
         }
 
@@ -48,7 +53,7 @@ $(document).ready(function() {
       dataType: "jsonp",
       type: "GET",
       success: function(data) {
-        $("#output").append("<div class='well'><img src="+ data.logo +"><a href="+ userLinkSetUp + name + "><h2>" + data.display_name + "</h2></a><p>offline...</p></div>");
+        $("#output").append("<div class='well'><img src="+ data.logo +"><a href="+ userLinkSetUp + name + "><h3>" + data.display_name + "</h3></a><p>offline...</p></div>");
         console.log(data);
       }
 
