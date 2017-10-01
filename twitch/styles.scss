@@ -1,8 +1,8 @@
 img {
   height: 3em;
-  width: 3em;
   padding-left: 3em;
   padding-right: 3em;
+  width: 3em;
 }
 
 body {
@@ -12,27 +12,26 @@ body {
   flex-direction: column;
   justify-content: center;
 
-
   .well {
     align-content: center;
     background-color: #2980b9;
+    border-radius: .75em;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin: .25em;
-    padding: .5em;
-    width: 50em;
-
-
+    padding: 1em;
+    // width: 50em;
     //margin-top: 2em;
-
     h3 {
-      padding-right: 3em;
+      padding-right: 1em;
       width: 5em;
     }
 
     p {
       align-self: flex-end;
+      padding-left: 5em;
+      padding-right: 2em;
     }
   }
 }
@@ -41,5 +40,12 @@ h2 {
   align-self: center;
   flex-direction: column;
   justify-content: center;
+}
 
+div.well.offline.hidden {
+  display: none;
+}
+
+div.well.online.hidden {
+  display: none;
 }

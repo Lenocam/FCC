@@ -1,8 +1,8 @@
 img {
   height: 3em;
-  width: 3em;
   padding-left: 3em;
-  padding-right: 3em; }
+  padding-right: 3em;
+  width: 3em; }
 
 body {
   -webkit-align-content: center;
@@ -30,6 +30,7 @@ body {
     -ms-flex-line-pack: center;
     align-content: center;
     background-color: #2980b9;
+    border-radius: .75em;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -44,15 +45,16 @@ body {
     -ms-flex-pack: start;
     justify-content: flex-start;
     margin: .25em;
-    padding: .5em;
-    width: 50em; }
+    padding: 1em; }
     body .well h3 {
-      padding-right: 3em;
+      padding-right: 1em;
       width: 5em; }
     body .well p {
       -webkit-align-self: flex-end;
       -ms-flex-item-align: end;
-      align-self: flex-end; }
+      align-self: flex-end;
+      padding-left: 5em;
+      padding-right: 2em; }
 
 h2 {
   -webkit-align-self: center;
@@ -67,3 +69,9 @@ h2 {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center; }
+
+div.well.offline.hidden {
+  display: none; }
+
+div.well.online.hidden {
+  display: none; }
