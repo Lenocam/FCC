@@ -1,3 +1,18 @@
+$wisteria-purple: #875F9A;
+$bellflower: #5D3F6A;
+$thin-color: #A87CA0;
+
+button {
+  box-shadow: .2em .2em 0 black;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 1.7em;
+  border-radius: 0.75em;
+  font-size: 1.2em;
+}
+
 img {
   height: 3em;
   padding-left: 3em;
@@ -5,7 +20,15 @@ img {
   width: 3em;
 }
 
+.output {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 body {
+  background-color: $wisteria-purple;
   align-content: center;
   align-items: center;
   display: flex;
@@ -13,25 +36,41 @@ body {
   justify-content: center;
 
   .well {
+    box-shadow: .2em .2em 0 black;
+    width: 26em;
     align-content: center;
-    background-color: #2980b9;
-    border-radius: .75em;
+    background-color: $bellflower;
+    border-radius: 0.75em;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    margin: .25em;
+    margin: 0.25em;
     padding: 1em;
     // width: 50em;
     //margin-top: 2em;
-    h3 {
+    h1 {
       padding-right: 1em;
       width: 5em;
+    }
+
+    .title {
+      display: inline-flex;
+      height: 2em;
+      margin-bottom: 1.5em;
+    }
+
+    .pholder {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-left: -2em;
     }
 
     p {
       align-self: flex-end;
       padding-left: 5em;
       padding-right: 2em;
+      font-size: 1.5em;
     }
   }
 }
@@ -48,4 +87,8 @@ div.well.offline.hidden {
 
 div.well.online.hidden {
   display: none;
+}
+
+div.well.online {
+  background-color: $thin-color;
 }

@@ -38,7 +38,7 @@ $(document).ready(function() {
         if (data.stream === null) {
           ifItsNull(name);
         } else {
-          $("#output").prepend("<div class='well online'><img src="+ data.stream.channel.logo +"><a href=" + data.stream.channel.url + "><h3>" + data.stream.channel.display_name + "</h3></a>" + "<p>" + data.stream.game + "</p></div>");
+          $(".output").prepend("<div class='well online'><div class='title'><img src="+ data.stream.channel.logo +"class='image'><a href=" + data.stream.channel.url + "><h1>" + data.stream.channel.display_name + "</h1></a></div>" + "<div class='pholder'><p>" + data.stream.game + "</p></div></div>");
           // console.log(data);
         }
 
@@ -53,7 +53,7 @@ $(document).ready(function() {
       dataType: "jsonp",
       type: "GET",
       success: function(data) {
-        $("#output").append("<div class='well offline'><img src="+ data.logo +"><a href="+ userLinkSetUp + name + "><h3>" + data.display_name + "</h3></a><p>offline...</p></div>");
+        $(".output").append("<div class='well offline'><div class='title'><img class='image' src="+ data.logo +"><a href="+ userLinkSetUp + name + "><h1>" + data.display_name + "</h1></a></div><div class='pholder'><p>offline...</p><div></div>");
         console.log(data);
       }
 
@@ -64,6 +64,10 @@ $(document).ready(function() {
   $("#live").on("click", function() {
     $(".offline").toggleClass("hidden");
   })
+
+  $('.image').onerror = function() {
+    this.src = "images.png";
+  };
 
 
 
